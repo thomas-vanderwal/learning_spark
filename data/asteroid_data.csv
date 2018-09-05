@@ -1,4 +1,4 @@
-neo_reference_id,name,aboslute_magnitude_h,kilometer_est_diameter_min,kilometer_est_diamter_max,potentially_hazardous,perihelion_distance,aphelion_distance,orbital_period,semi_major_axis,min_orbit_intersection
+neo_reference_id,name,absolute_magnitude_h,kilometer_est_diameter_min,kilometer_est_diameter_max,potentially_hazardous,perihelion_distance,aphelion_distance,orbital_period,semi_major_axis,min_orbit_intersection
 2021277,21277 (1996 TO5),16.0,1.6770846216,3.750075218,False,1.139487239997944,3.614187256438178,1338.435952995174,2.376837248218061,.312301
 2153306,153306 (2001 JL1),16.7,1.214940408,2.7166893409,False,1.218119697841313,3.888221259359817,1490.109378710325,2.553170478600565,.506986
 2162038,162038 (1996 DH),16.6,1.2721987854,2.844722965,False,1.147848017883828,2.025798642580964,730.1150360840754,1.586823330232396,.134543

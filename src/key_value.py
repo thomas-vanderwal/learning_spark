@@ -31,3 +31,14 @@ print("Total number of records after grouping by key: {0}".format(grp_data.count
 #  -- Minimum Orbital Intersection (MOID) < .05 AU
 pha_data = ast_data.filter(lambda x: x[1][0] < 22.0 and  x[1][1] < .05)
 print('First 10 potentially hazardous asteroids: {0}'.format(pha_data.take(10)))
+
+# Using combineByKey to find th per-key average. Here we will use near miss data
+# to find the average miss distance of each asteroid 
+
+# Returns a new key-valu RDD with (asteroid, (sum miss distance, count near misses))
+sum_count = nm_data.combineByKey((lambda x: (x, 1))
+                                ,(lambda x, y: (x[0] + y, x[1] + 1))
+                                ,(lambda x, y: (x[0] + y[0], x[1] + y[1])))
+
+results = sum_count.map(lambda x: (x[0], x[1][0]/x[1][1]))
+print('First 10 asteroids and their average miss distance: {0}'.format(results.take(10)))

@@ -1,8 +1,6 @@
 # File for working with examples from Chapter 5
 #  Loading and Saving Your Data
 import json
-import csv
-import io
 from pyspark import SparkConf, SparkContext
 
 conf = SparkConf().setMaster("local").setAppName("My App")
@@ -24,11 +22,3 @@ print(type(data))
 data.filter(lambda x: x['user']).map(lambda x: json.dumps(x))\
 #            .saveAsTextFile('../data/output/jsondump.txt')
 
-#Reading CSV file. Use a function instead of whole file methon in key_value file
-def load_record(line):
-    """ Parse CSV line """
-    line_buffer = io.StringIO(line)
-    reader = csv.DictReader(line_buffer)
-    return next(reader)
-input = sc.textFile('../data/asteroid_data.csv').map(load_record)
-print('First 5 records of csv reader: {0}'.format(input.take(5)))

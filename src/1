@@ -1,0 +1,30 @@
+""" Working document for Chapter 6 concepts """
+import sys
+from pyspark import SparkConf, SparkContext
+
+def extract_call_signs(line):
+    global blank_lines
+
+    if line == "":
+        blank_lines += 1
+
+    return line
+
+if __name__ == '__main__':
+    if len(sys.argv) != 4:
+        print("Error usage: JobScript [sparkmaster] [input file] [output file]")
+        sys.exit(-1)
+
+    job_name = sys.argv[0]
+    master = sys.argv[1]
+    input_file = sys.argv[2]
+    output_file = sys.argv[3]
+ 
+    sc = SparkContext(master, job_name)
+    
+    # Create an acucmulator initialized to 0
+    #  This will be used to count the number of empty lines in the file
+    blank_lines = sc.accumulator(0)
+    file = sc.textFile(input_file)
+    
+    call_signs = file.flatMap(extract_call_signs)
